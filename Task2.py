@@ -15,12 +15,22 @@ def local_method():
     return data
 
 def filter_method(data):
-    instructor = input('Inserisci il nome di un professore per visualizzarne i corsi: ')
-    for row in data:
-        if instructor == '':
+    instructors = []
+    instructor = input('Inserisci il nome di un professore per visualizzarne i corsi o premere Invio per visualizzarli tutti: ')
+    if instructor == '':
+        for row in data:
             print(row[1] + ', ' + row[3] + ', ' + row[0])
-        elif instructor.lower().strip() in row[4].lower():
-            print(row[1] + ', ' + row[3] + ', ' + row[0])
+    elif instructor != '':
+        instructors.append(instructor)
+        while True:
+            instructor = input('Vuoi inserire il nome di un altro professore? Inserire un altro nome oppure "q" per andare avanti: ')
+            if instructor.lower() == 'q':
+                break
+            instructors.append(instructor)
+        for row in data:
+            for instructor in instructors:    
+                if instructor.lower().strip() in row[4].lower():
+                    print(row[1] + ', ' + row[3] + ', ' + row[0])
 
 def main():
     print('Scegliere il file .csv da leggere')
