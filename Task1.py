@@ -10,7 +10,7 @@ def url_method():
 
 def local_method():
     path = input('Inserire il percorso del file: ')
-    file = open(path, "rt")
+    file = open(path)
     data = csv.reader(file)
     return data
 
