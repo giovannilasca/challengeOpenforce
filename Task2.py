@@ -14,7 +14,7 @@ def local_method():
     data = csv.reader(file)
     return data
 
-def filter_method(data):
+def filter_instructor(data):
     instructors = []
     instructor = input('Inserisci il nome di un professore per visualizzarne i corsi o premere Invio per visualizzarli tutti: ')
     if instructor == '':
@@ -26,9 +26,6 @@ def filter_method(data):
             teachers = row[4]
             course_year = row[6]
             data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
-        filter_year(data_filtered)
-        filter_date(data_filtered)
-        remove_dup(data_filtered)
         
     elif instructor != '':     
         while instructor != '':
@@ -44,38 +41,34 @@ def filter_method(data):
                     teachers = row[4]
                     course_year = row[6]
                     data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
-        filter_year(data_filtered)
-        filter_date(data_filtered)
-        remove_dup(data_filtered)
-
-    for row in dup_free:
-        print(row)
+        
+    return data_filtered
 
 def filter_year(data):
     year = str(input('Vuoi filtrare i risultati per anno di corso? Se sì inserire un numero da 1 a 4, altrimenti inserire "0": '))
     if year == '0':
-        return None
+        return data
     while year not in ['1', '2', '3', '4']:
         year = str(input('Inserire un numero da 1 a 4: '))
     year_filtered = []
     for row in data:
         if year == row[5]:
             year_filtered.append(row)
-    data_filtered = year_filtered
-    return data_filtered
+    data = year_filtered
+    return data
    
 def filter_date(data):
     date = str(input('Vuoi filtrare i risultati per anno solare? Se sì inserire un anno, altrimenti inserire "0": '))
     if date == '0':
-        return None
+        return data
     while date not in ['2012', '2013', '2014', '2015', '2016']:
         date = str(input('Inserire un anno compreso tra 2012 e 2016: '))
     date_filtered = []
     for row in data:
         if row[5].endswith(date):
             date_filtered.append(row)
-    data_filtered = date_filtered
-    return data_filtered
+    data = date_filtered
+    return data
 
 def remove_dup(data):
     for row in data:
@@ -87,9 +80,13 @@ def main():
     print('Scegliere il file .csv da leggere')
     answer = input('Si desidera aprire un file presente in locale o da un particolare indirizzo url? Digitare "l" per la prima opzione, "u" per la seconda: ')
     if answer == 'u':
-        filter_method(url_method()) 
+        remove_dup(filter_date(filter_year(filter_instructor(url_method()))))
+        for row in dup_free:
+            print(row) 
     elif answer == 'l':  
-        filter_method(local_method())
+        remove_dup(filter_date(filter_year(filter_instructor(local_method()))))
+        for row in dup_free:
+            print(row)
     else:
         print('Solo "u" o "l" sono risposte valide!')
         main()
