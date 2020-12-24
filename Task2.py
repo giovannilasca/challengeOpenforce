@@ -1,23 +1,23 @@
 import csv
 import urllib.request as req
 
-def url_method():
+def url_method(): #preleva file tramite url
     url = input('Inserire l\'indirizzo url del file: ')
     file = req.urlopen(url)
     lines = [l.decode('utf-8-sig') for l in file.readlines()]
     data = csv.reader(lines)
     return data
 
-def local_method():
+def local_method(): #preleva file localmente
     path = input('Inserire il percorso del file: ')
     file = open(path)
     data = csv.reader(file)
     return data
 
-def filter_instructor(data):
+def filter_instructor(data): #filtra per instructor
     instructors = []
     instructor = input('Inserisci il nome di un professore per visualizzarne i corsi o premere Invio per visualizzarli tutti: ')
-    if instructor == '':
+    if instructor == '': #aggiunge tutti i corsi
         for row in data:
             institution = row[0]
             course_number = row[1]
@@ -27,7 +27,7 @@ def filter_instructor(data):
             course_year = row[6]
             data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
         
-    elif instructor != '':     
+    elif instructor != '': #aggiunge dopo aver filtrato i corsi di uno o più professori    
         while instructor != '':
             instructors.append(instructor)
             instructor = input('Vuoi inserire il nome di un altro professore? Inserire un altro nome oppure Invio per andare avanti: ')            
@@ -44,7 +44,7 @@ def filter_instructor(data):
         
     return data_filtered
 
-def filter_year(data):
+def filter_year(data): #filtra per anno di corso
     year = str(input('Vuoi filtrare i risultati per anno di corso? Se sì inserire un numero da 1 a 4, altrimenti inserire "0": '))
     if year == '0':
         return data
@@ -57,7 +57,7 @@ def filter_year(data):
     data = year_filtered
     return data
    
-def filter_date(data):
+def filter_date(data): #filtra per anno solare
     date = str(input('Vuoi filtrare i risultati per anno solare? Se sì inserire un anno, altrimenti inserire "0": '))
     if date == '0':
         return data
@@ -70,7 +70,7 @@ def filter_date(data):
     data = date_filtered
     return data
 
-def remove_dup(data):
+def remove_dup(data): #rimuove duplicati
     for row in data:
         if row not in dup_free:
             dup_free.append(row)

@@ -1,20 +1,20 @@
 import csv
 import urllib.request as req
 
-def url_method():
+def url_method(): #preleva file tramite url
     url = input('Inserire l\'indirizzo url del file: ')
     file = req.urlopen(url)
     lines = [l.decode('utf-8-sig') for l in file.readlines()]
     data = csv.reader(lines)
     return data
 
-def local_method():
+def local_method(): #preleva file localmente
     path = input('Inserire il percorso del file: ')
     file = open(path)
     data = csv.reader(file)
     return data
 
-def filter_method(data):
+def filter_method(data): #filtra per instructor
     instructor = input('Inserisci il nome di un professore per visualizzarne i corsi: ')
     for row in data:
         if instructor == '':
