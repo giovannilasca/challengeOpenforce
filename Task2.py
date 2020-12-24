@@ -65,7 +65,7 @@ def filter_date(data): #filtra per anno solare
         date = str(input('Inserire un anno compreso tra 2012 e 2016: '))
     date_filtered = []
     for row in data:
-        if row[5].endswith(date):
+        if row[2].endswith(date):
             date_filtered.append(row)
     data = date_filtered
     return data
@@ -82,11 +82,11 @@ def main():
     if answer == 'u':
         remove_dup(filter_date(filter_year(filter_instructor(url_method()))))
         for row in dup_free:
-            print(row) 
+            print(row[0] + ', ' + row[1] + ', ' + row[2] + ', ' + row[3] + ', ' + row[4] + ', ' + row[5]) 
     elif answer == 'l':  
         remove_dup(filter_date(filter_year(filter_instructor(local_method()))))
         for row in dup_free:
-            print(row)
+            print(row[0] + ', ' + row[1] + ', ' + row[2] + ', ' + row[3] + ', ' + row[4] + ', ' + row[5])
     else:
         print('Solo "u" o "l" sono risposte valide!')
         main()
