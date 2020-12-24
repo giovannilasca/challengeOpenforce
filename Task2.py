@@ -26,11 +26,10 @@ def filter_method(data):
             teachers = row[4]
             course_year = row[6]
             data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
+        filter_year(data_filtered)
+        filter_date(data_filtered)
         remove_dup(data_filtered)
-        filter_year(dup_free)
-        for row in dup_free:
-            print(row)
-
+        
     elif instructor != '':     
         while instructor != '':
             instructors.append(instructor)
@@ -46,8 +45,10 @@ def filter_method(data):
                     course_year = row[6]
                     data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
         filter_year(data_filtered)
-        filter_date()
-    for row in data_filtered:
+        filter_date(data_filtered)
+        remove_dup(data_filtered)
+
+    for row in dup_free:
         print(row)
 
 def filter_year(data):
@@ -56,17 +57,25 @@ def filter_year(data):
         return None
     while year not in ['1', '2', '3', '4']:
         year = str(input('Inserire un numero da 1 a 4: '))
+    year_filtered = []
     for row in data:
-        if year != row[5]:
-            data.remove(row)
-    return data
+        if year == row[5]:
+            year_filtered.append(row)
+    data_filtered = year_filtered
+    return data_filtered
    
-def filter_date():
-    date = int(input('Vuoi filtrare i risultati per anno solare? Se sì inserire un anno, altrimenti inserire "0": '))
-    if date == 0:
+def filter_date(data):
+    date = str(input('Vuoi filtrare i risultati per anno solare? Se sì inserire un anno, altrimenti inserire "0": '))
+    if date == '0':
         return None
-    while date not in range(2011, 2017):
-        date = int(input('Inserire un anno compreso tra 2012 e 2016: '))
+    while date not in ['2012', '2013', '2014', '2015', '2016']:
+        date = str(input('Inserire un anno compreso tra 2012 e 2016: '))
+    date_filtered = []
+    for row in data:
+        if row[5].endswith(date):
+            date_filtered.append(row)
+    data_filtered = date_filtered
+    return data_filtered
 
 def remove_dup(data):
     for row in data:
