@@ -79,14 +79,22 @@ def remove_dup(data): #rimuove duplicati
     return dup_free
 
 def save_locally(data): #salva in un file xlsx
-    choose = input('Desideri salvare i risultati in un documento? Digita "save" per salvare, Invio per saltare questo passaggio: ')
-    if choose.lower().strip() == 'save':
-        df = pd.DataFrame(data)
-        writer = pd.ExcelWriter('saved_file.xlsx', engine='xlsxwriter')
-        df.to_excel(writer, sheet_name='welcome', index=False)
-        writer.save()
+    if not data:
+        a = input('Non ci sono risultati per questa ricerca, vuoi cercare di nuovo o terminare il programma? "s" per cercare ancora, "q" per terminare: ')
+        if a.lower() == 's':
+            main()
+        elif a.lower() == 'q':
+            return 0
     else:
-        return 0
+        choose = input('Desideri salvare i risultati in un documento? Digita "save" per salvare, Invio per saltare questo passaggio: ')
+        if choose.lower().strip() == 'save':
+            df = pd.DataFrame(data)
+            writer = pd.ExcelWriter('saved_file.xlsx', engine='xlsxwriter')
+            df.to_excel(writer, sheet_name='welcome', index=False)
+            writer.save()
+            print('File salvato correttamente.')
+        else:
+            return 0
 
 def main():
     print('Scegliere il file .csv da leggere')
