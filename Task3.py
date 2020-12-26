@@ -72,7 +72,7 @@ def filter_date(data): #filtra per anno solare
     data = date_filtered
     return data
 
-def remove_dup(data): #rimuove duplicati
+def remove_dup(data): #rimuove duplicati dalla lista finale dei risultati
     for row in data:
         if row not in dup_free:
             dup_free.append(row)

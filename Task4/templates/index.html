@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+    
+{% block head %}
+    <title>challengeOpenforce</title>
+{% endblock %}    
+
+{% block body %}
+    <h2>1. Scegliere il file da leggere</h2>
+    <form action="/filter" method="POST" id="choose_form" class="flex">
+        <label for="csvfile">Carica il file da locale:</label>
+        <input type="file" name="csvfile" id="csvfile" accept=".csv">
+        <input type="submit" value="Carica File" id="submit">      
+    </form>
+{% endblock %}
+
+    
+    

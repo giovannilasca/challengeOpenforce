@@ -17,7 +17,7 @@ def local_method(): #preleva file localmente
 def filter_instructor(data): #filtra per instructor
     instructors = []
     instructor = input('Inserisci il nome di un professore per visualizzarne i corsi o premere Invio per visualizzarli tutti: ')
-    if instructor == '': #aggiunge tutti i corsi
+    if instructor == '': #aggiunge a data_filtered tutti i corsi
         for row in data:
             institution = row[0]
             course_number = row[1]
@@ -27,7 +27,7 @@ def filter_instructor(data): #filtra per instructor
             course_year = row[6]
             data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
         
-    elif instructor != '': #aggiunge dopo aver filtrato i corsi di uno o più professori    
+    elif instructor != '': #aggiunge a data_filtered tutti i corsi dei professori inseriti
         while instructor != '':
             instructors.append(instructor)
             instructor = input('Vuoi inserire il nome di un altro professore? Inserire un altro nome oppure Invio per andare avanti: ')            
@@ -70,7 +70,7 @@ def filter_date(data): #filtra per anno solare
     data = date_filtered
     return data
 
-def remove_dup(data): #rimuove duplicati
+def remove_dup(data): #rimuove duplicati dalla lista finale dei risultati
     for row in data:
         if row not in dup_free:
             dup_free.append(row)
