@@ -41,7 +41,7 @@ def filter_instructor(data): #filtra per instructor
                     teachers = row[4]
                     course_year = row[6]
                     data_filtered.append([institution, course_number, launch_date, course_title, teachers, course_year])
-        
+
     return data_filtered
 
 def filter_year(data): #filtra per anno di corso
@@ -74,7 +74,14 @@ def remove_dup(data): #rimuove duplicati
     for row in data:
         if row not in dup_free:
             dup_free.append(row)
-    return dup_free
+    if not dup_free:
+        a = input('Non ci sono risultati per questa ricerca, vuoi cercare di nuovo o terminare il programma? "s" per cercare ancora, "q" per terminare: ')
+        if a.lower() == 's':
+            main()
+        elif a.lower() == 'q':
+            return 0
+    else:
+        return dup_free
 
 def main():
     print('Scegliere il file .csv da leggere')
