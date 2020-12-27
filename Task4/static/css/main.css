@@ -17,16 +17,18 @@ a {
 }
 
 h2 {
-    margin-bottom: 3%;
+    text-transform: uppercase;
+    font-size: 110%;
+    margin: 2% 0;
 }
 
 label {
-    margin: 0 20px 0 5px;
+    margin: 0 15px 0 5px;
 }
 
 fieldset {
-    width: 70%;
-    padding: 2% 0;
+    width: 100%;
+    padding: 3% 0;
     margin: 3% 0;
     justify-content: space-between;
 }
@@ -37,6 +39,7 @@ legend {
 
 input, option {
     outline: none;
+    border: none;
 }
 
 .flex {
@@ -51,28 +54,26 @@ input, option {
 
 #header_wrap {
     height: 30%;
-    background: rgb(22, 22, 22);
+    background-color: rgb(22, 22, 22);
     color: white;
 }
 
 #content_wrap {
     height: 70%;
+    background-color: rgb(245, 245, 245);
     flex-direction: column;
 }
 
-#choose_form, #filter_form {
+#form1 {
     background-color: rgb(236, 236, 236);
-    padding: 3% 3%;
+    padding: 1% 5%;
+    flex-direction: column;
     border: 1px solid rgb(194, 194, 194);
     border-radius: 10px;
 }
 
-#filter_form {
-    width: 40%;
-    flex-direction: column;
-}
-
 #submit {
+    margin-top: 3%;
     padding: 5px 15px;
     background-color: rgb(24, 120, 184);
     color: white;
