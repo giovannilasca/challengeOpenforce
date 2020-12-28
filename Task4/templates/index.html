@@ -5,7 +5,7 @@
 {% endblock %}    
 
 {% block body %}
-    <form action="/datasubmit" method="POST" id="form1" class="flex">
+    <form action="/server" method="POST" id="form1" class="flex">
         <h2>1. Scegli il file</h2>
         <fieldset class="flex">
             <legend>Scegli il File da Leggere</legend>
@@ -15,7 +15,7 @@
         <h2>2. Filtra i risultati</h2>
         <fieldset class="flex">
             <legend>Filtra per Professore</legend>
-            <label>Scrivi il nome: </label>
+            <label for="instructor">Scrivi il nome: </label>
             <input type="text" name="instructor">
         </fieldset>
         <fieldset class="flex">
